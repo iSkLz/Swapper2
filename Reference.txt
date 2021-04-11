@@ -1,0 +1,48 @@
+Colors:
+0- Purple #9e4491
+ - Purple is death
+1- Red #bd515a
+2- Blue #425bbd
+3- Blank #23213d
+ - Blank is neutral
+4- Void #76747d
+ - Void is outside the level
+
+Flag Colors:
+0- Normal #82aa28
+1- Gold #f3d040
+2- Silver #76747d
+3- Bronze #d17f6b
+
+Notes:
+- Blocks with color modes will only function if the player's mode meets the condition
+- Slash-separated lists mean any combination of the items is accepted
+- Comma-separated lists mean only one of the items is accepted
+
+Tile
+* Mode: Neutral, red, blue, purple, void
+* Locked: True, false
+
+Push block
+* Mode: Neutral, red, blue
+* Direction: Left / up / right / down
+- Can be pushed only towards the specified directions
+
+Block block
+- Blocks the way
+
+Pass block
+* Direction: Left / up / right / down
+- Blocks the way from the specified directions
+
+Key block
+* Type: Gold, silver, bronze
+
+Lock block
+* Type: Gold, silver, bronze
+- Needs a key
+
+Counter block
+* Count: Number
+- Count decreases every time the player steps on it
+- Turns into into a block block after the player leaves its tile if the count is exhausted
