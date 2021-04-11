@@ -5,6 +5,7 @@ using SwapperV2.Graphics;
 using SwapperV2.Scenes;
 using SwapperV2.World;
 using SwapperV2.UI;
+using SwapperV2.Inputs;
 
 namespace SwapperV2.Scenes
 {

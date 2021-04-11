@@ -2,6 +2,8 @@
 using System.IO;
 using System.Xml.Serialization;
 
+using SwapperV2.Inputs;
+
 using Microsoft.Xna.Framework.Input;
 
 namespace SwapperV2
@@ -32,6 +34,8 @@ namespace SwapperV2
 
         public void Save()
         {
+            Input.UpdateBinds();
+
             using (Stream stream = new FileStream("Settings.xml", FileMode.OpenOrCreate, FileAccess.Write))
             {
                 Serializer.Serialize(stream, this);

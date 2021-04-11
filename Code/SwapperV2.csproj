@@ -51,6 +51,7 @@
     <Compile Include="Graphics\SpriteSheet.cs" />
     <Compile Include="Inputs\Bind.cs" />
     <Compile Include="Inputs\Collector.cs" />
+    <Compile Include="Inputs\Input.cs" />
     <Compile Include="Scenes\MainMenu.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Swapper.cs" />

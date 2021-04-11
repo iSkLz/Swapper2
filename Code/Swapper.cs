@@ -8,6 +8,7 @@ using SwapperV2.Scenes;
 using SwapperV2.World;
 using SwapperV2.Graphics;
 using SwapperV2.Text;
+using SwapperV2.Inputs;
 
 namespace SwapperV2
 {
@@ -32,6 +33,8 @@ namespace SwapperV2
         public int CenterX => Width / 2;
         public int CenterY => Height / 2;
 
+        public Settings Settings = Settings.Load();
+
         public Swapper()
         {
             Instance = this;
@@ -53,6 +56,8 @@ namespace SwapperV2
             Graphics.PreferredBackBufferHeight = 720;
 
             Graphics.ApplyChanges();
+
+            Input.UpdateBinds();
 
             // Never forget to keep this line last, all other initializations should precede
             ActiveScene = new MainMenu();
