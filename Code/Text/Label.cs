@@ -38,8 +38,8 @@ namespace SwapperV2.Text
                 for (int k = 0; k < images.Length; k++)
                 {
                     var pos = Parent.Position + Offset + new Vector2((Font.Width + Space) * k * Size, y);
-                    if (Align == Alignement.Right) pos -= new Vector2(size, 0);
-                    if (Align == Alignement.Center) pos -= new Vector2(size / 2, 0);
+                    if (Align == Alignement.Right) pos.X -= size;
+                    if (Align == Alignement.Center) pos.X -= size / 2;
                     Swapper.Instance.Batch.Draw(images[k].Texture, pos, images[k].Clip, Color, 0f, Vector2.Zero, Size, SpriteEffects.None, 0);
                 }
             }
