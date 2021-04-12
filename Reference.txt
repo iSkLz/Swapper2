@@ -9,10 +9,10 @@ Colors:
  - Void is outside the level
 
 Flag Colors:
-0- Normal #82aa28
-1- Gold #f3d040
-2- Silver #76747d
-3- Bronze #d17f6b
+0- Gold #f3d040
+1- Silver #76747d
+2- Bronze #d17f6b
+3- Normal #82aa28
 
 Notes:
 - Blocks with color modes will only function if the player's mode meets the condition

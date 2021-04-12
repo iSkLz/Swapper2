@@ -13,6 +13,9 @@ namespace SwapperV2.Graphics
         public Image Image;
 
         public Color Tint = Color.White;
+        public Color? Outline = null;
+        public float OutlineSize = 0f;
+
         public Vector2 Scale;
         public SpriteEffects Flip;
 
@@ -50,6 +53,19 @@ namespace SwapperV2.Graphics
 
         public override void Render()
         {
+            if (Outline.HasValue && OutlineSize > 0f)
+            {
+                // Iterate every corner (top left, top right, bottom left, bottom right)
+                for (int i = -1; i < 2; i+=2)
+                {
+                    for (int k = -1; k < 2; k += 2)
+                    {
+                        var offset = new Vector2(i * OutlineSize, k * OutlineSize);
+                        Swapper.Instance.Batch.Draw(Image.Texture, Parent.Position + Offset + Anchor * Scale + offset, Image.Clip, Tint, Rotation, Anchor, Scale, Flip, Z);
+                    }
+                }
+            }
+
             Swapper.Instance.Batch.Draw(Image.Texture, Parent.Position + Offset + Anchor * Scale, Image.Clip, Tint, Rotation, Anchor, Scale, Flip, Z);
         }
     }

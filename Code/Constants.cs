@@ -14,7 +14,17 @@ namespace SwapperV2
 
         public enum FlagColor : byte
         {
-            Normal, Gold, Silver, Bronze
+            Gold, Silver, Bronze, Normal
+        }
+
+        public enum KeyType : byte
+        {
+            Gold, Silver, Bronze
+        }
+
+        public enum RemoteType : byte
+        {
+            Gold, Blue, Red, None
         }
 
         public enum Direction : byte
@@ -23,15 +33,10 @@ namespace SwapperV2
             Up = 2,
             Right = 4,
             Down = 8,
-            UpLeft = Up & Left,
-            DownLeft = Down & Left,
-            UpRight = Up & Right,
-            DownRight = Down & Right
-        }
-
-        public enum KeyType : byte
-        {
-            Gold, Silver, Bronze
+            UpLeft = Up | Left,
+            DownLeft = Down | Left,
+            UpRight = Up | Right,
+            DownRight = Down | Right
         }
 
         public enum Colors : byte

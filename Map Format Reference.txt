@@ -1,17 +1,19 @@
 - types -
 direction (2 bits): 0 left, 1 up, 2 right, 3 down
 keytype (2 bits): 0 gold, 1 silver, 3 bronze, 4 none
+remote (2 bits): 0 gold, 1 blue, 3 red, 4 none
 color (2 bits): neutral, red, blue, neutral
 
 - tile -
-tile:
-type (3 bits): 0 red locked, 1 blue locked, 2 red unlocked, 3 blue unlocked, 4 blank, 5 purple, 6 void, 7 block
-void & block don't have blocks, can skip to next tile
+type (3 bits): 0 red locked, 1 blue locked, 2 red unlocked, 3 blue unlocked, 4 blank, 5 purple, 6 void
+void & purple don't have blocks, can skip to next tile
 block (5 bits): block ID
 
 - blocks -
 pass (0): direction
-key (1): keytype, count (1 unsigned byte)
-lock (2): keytype, count (1 unsigned byte)
-counter (3): count (1 unsigned byte)
-push (4): color, direction
+key (1): keytype, remote
+lock (2): keytype, remote
+push (4): direction
+
+- map -
+map constant: 16-bit unsigned int (5 bits for width, 5 bits for height, 6 bits for swaps)

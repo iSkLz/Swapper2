@@ -43,7 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Content\Map.cs" />
     <Compile Include="Content\Sprites.cs" />
+    <Compile Include="Gameplay\EditTile.cs" />
     <Compile Include="Gameplay\Tile.cs" />
     <Compile Include="Graphics\Animation.cs" />
     <Compile Include="Graphics\Sprite.cs" />
@@ -53,6 +55,7 @@
     <Compile Include="Inputs\Collector.cs" />
     <Compile Include="Inputs\Input.cs" />
     <Compile Include="Scenes\MainMenu.cs" />
+    <Compile Include="Scenes\MapEditor.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="Swapper.cs" />
     <Compile Include="Program.cs" />
