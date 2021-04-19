@@ -6,7 +6,7 @@ using SwapperV2.World;
 using System;
 using System.Collections;
 
-namespace SwapperV2.UI
+namespace SwapperV2.Tests
 {
     public class Test : Entity
     {
@@ -31,10 +31,10 @@ namespace SwapperV2.UI
             }
         }
 
-        public override bool Update(float delta)
+        public override void Update(float delta)
         {
             Sprite.Rotation += Constants.FullCircle * delta;
-            return base.Update(delta);
+            base.Update(delta);
         }
     }
 }

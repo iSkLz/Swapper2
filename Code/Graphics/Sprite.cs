@@ -16,7 +16,15 @@ namespace SwapperV2.Graphics
         public Color? Outline = null;
         public float OutlineSize = 0f;
 
-        public Vector2 Scale;
+        public Vector2 Scale = Vector2.One;
+        public float FloatScale
+        {
+            set
+            {
+                Scale = Vector2.One * value;
+            }
+        }
+
         public SpriteEffects Flip;
 
         public Vector2 Offset = Vector2.Zero;

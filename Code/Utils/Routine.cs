@@ -10,21 +10,43 @@ namespace SwapperV2.Utils
 {
     public class Routine : Component
     {
+        public static IEnumerator Loop(IEnumerator routine)
+        {
+            while (true)
+            {
+                yield return routine;
+            }
+        }
+
+        public event Action End;
+
         private readonly Stack<IEnumerator> Enumerators = new Stack<IEnumerator>();
+        // Using Stack.Peek instead of a separate variable implies additional checks and lookup time
         private IEnumerator Active;
         private float Timer = 0f;
 
-        public Routine(IEnumerator call)
+        public bool Finished { get; private set; }
+
+        public Routine(IEnumerator call, bool removeOnEnd = false, bool loop = false)
         {
+            if (loop)
+            {
+                Active = Loop(call);
+            }
+
             Active = call;
+            if (removeOnEnd) End += () =>
+            {
+                RemoveSelf();
+            };
         }
 
-        public override bool Update(float delta)
+        public override void Update(float delta)
         {
             if (Timer > 0)
             {
                 Timer -= delta;
-                return false;
+                return;
             }
 
             if (Active.MoveNext())
@@ -49,14 +71,17 @@ namespace SwapperV2.Utils
             }
             else if (Enumerators.Count == 0)
             {
-                return true;
+                if (!Finished)
+                {
+                    Finished = true;
+                    End?.Invoke();
+                }
+                return;
             }
             else
             {
                 Active = Enumerators.Pop();
             }
-
-            return false;
         }
     }
 }

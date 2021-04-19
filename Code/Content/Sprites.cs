@@ -13,9 +13,18 @@ namespace SwapperV2.Content
     {
         public static Dictionary<string, Image> Dict = new Dictionary<string, Image>();
 
+        public static bool Loaded;
+
         public static void Load()
         {
             ScanDir("Sprites");
+
+            foreach (var loader in SpriteLoader.Loaders)
+            {
+                loader.Resolve();
+            }
+
+            Loaded = true;
         }
 
         private static void ScanDir(string path)

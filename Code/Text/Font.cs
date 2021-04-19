@@ -24,15 +24,14 @@ namespace SwapperV2.Text
         public int Width { get; }
         public int Height { get; }
 
-        public Font(string ID)
+        public Font(Image image)
         {
-            var image = Sprites.Dict[ID];
             Sheet = new SpriteSheet(image, Width = image.Clip.Width / 37, Height = image.Clip.Height);
         }
 
         public Image GetImage(Glyph glyph)
         {
-            return Sheet.Sprites[(int)glyph];
+            return Sheet.Images[(int)glyph];
         }
 
         public Image GetImage(char chr)

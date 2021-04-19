@@ -14,6 +14,14 @@ namespace SwapperV2.Inputs
         public static GamePadState CurrentGState;
         public static GamePadState PreviousGState;
 
+        public static MouseState CurrentMState;
+        public static MouseState PreviousMState;
+
+        public enum MouseButton
+        {
+            Left, Middle, Right
+        }
+
         public static event Action OnCollect;
 
         static Collector()
@@ -30,6 +38,9 @@ namespace SwapperV2.Inputs
             CurrentKState = Keyboard.GetState();
             if (PreviousKState == null) PreviousKState = CurrentKState;
 
+            CurrentMState = Mouse.GetState();
+            if (PreviousMState == null) PreviousMState = CurrentMState;
+
             OnCollect?.Invoke();
         }
 
@@ -38,6 +49,66 @@ namespace SwapperV2.Inputs
             PreviousKState = CurrentKState;
             PreviousGState = CurrentGState;
         }
+
+        #region Mouse
+        public static Vector2 Cursor()
+        {
+            return new Vector2(CurrentMState.X, CurrentMState.Y);
+        }
+
+        public static bool Down(MouseButton button)
+        {
+            switch (button)
+            {
+                case MouseButton.Middle:
+                    return CurrentMState.MiddleButton == ButtonState.Pressed;
+                case MouseButton.Right:
+                    return CurrentMState.RightButton == ButtonState.Pressed;
+                default:
+                    return CurrentMState.LeftButton == ButtonState.Pressed;
+            }
+        }
+
+        public static bool Up(MouseButton button)
+        {
+            return !Down(button);
+        }
+
+        public static bool Pressed(MouseButton button)
+        {
+            if (Up(button)) return false;
+
+            switch (button)
+            {
+                case MouseButton.Middle:
+                    return PreviousMState.MiddleButton == ButtonState.Released;
+                case MouseButton.Right:
+                    return PreviousMState.RightButton == ButtonState.Released;
+                default:
+                    return PreviousMState.LeftButton == ButtonState.Released;
+            }
+        }
+
+        public static bool Released(MouseButton button)
+        {
+            if (Down(button)) return false;
+
+            switch (button)
+            {
+                case MouseButton.Middle:
+                    return PreviousMState.MiddleButton == ButtonState.Pressed;
+                case MouseButton.Right:
+                    return PreviousMState.RightButton == ButtonState.Pressed;
+                default:
+                    return PreviousMState.LeftButton == ButtonState.Pressed;
+            }
+        }
+
+        public static int Wheel()
+        {
+            return CurrentMState.ScrollWheelValue - PreviousMState.ScrollWheelValue;
+        }
+        #endregion
 
         #region Keyboard
         public static bool Down(Keys key)

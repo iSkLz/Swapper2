@@ -6,7 +6,7 @@ using SwapperV2.World;
 using System;
 using System.Collections;
 
-namespace SwapperV2.UI
+namespace SwapperV2.Tests
 {
     public class Test2 : Entity
     {
@@ -23,7 +23,7 @@ namespace SwapperV2.UI
             });
         }
 
-        public override bool Update(float delta)
+        public override void Update(float delta)
         {
             Text.Color = Color.White;
 
@@ -37,7 +37,7 @@ namespace SwapperV2.UI
 
             if (Input.Undo.Pressed) Text.Color = Color.Red;
 
-            return base.Update(delta);
+            base.Update(delta);
         }
     }
 }

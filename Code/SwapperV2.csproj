@@ -43,9 +43,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Content\Palette.cs" />
+    <Compile Include="Content\SpriteLoader.cs" />
     <Compile Include="Content\Map.cs" />
     <Compile Include="Content\Sprites.cs" />
+    <Compile Include="Gameplay\Block.cs" />
+    <Compile Include="Gameplay\Blocks\Lock.cs" />
+    <Compile Include="Gameplay\Blocks\Key.cs" />
     <Compile Include="Gameplay\EditTile.cs" />
+    <Compile Include="Gameplay\Player.cs" />
     <Compile Include="Gameplay\Tile.cs" />
     <Compile Include="Graphics\Animation.cs" />
     <Compile Include="Graphics\Sprite.cs" />
@@ -60,11 +66,16 @@
     <Compile Include="Swapper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tests\Test3.cs" />
     <Compile Include="Text\Font.cs" />
     <Compile Include="Text\Label.cs" />
-    <Compile Include="UI\Test.cs" />
-    <Compile Include="UI\Test2.cs" />
+    <Compile Include="Tests\Test.cs" />
+    <Compile Include="Tests\Test2.cs" />
+    <Compile Include="UI\MouseListener.cs" />
+    <Compile Include="Utils\Interval.cs" />
+    <Compile Include="Utils\Progress.cs" />
     <Compile Include="Utils\Routine.cs" />
+    <Compile Include="Utils\Timeout.cs" />
     <Compile Include="World\Component.cs" />
     <Compile Include="World\Entity.cs" />
     <Compile Include="World\Scene.cs" />
@@ -93,6 +104,9 @@
     <Content Include="Sprites\Thaelah.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sprites\World\Badges.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sprites\World\Block.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -108,6 +122,9 @@
     <Content Include="Sprites\World\Flags\Silver.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sprites\World\Keys.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Sprites\World\Keys\Bronze.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -115,6 +132,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Sprites\World\Keys\Silver.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sprites\World\Locks.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Sprites\World\Locks\Bronze.png">
@@ -141,12 +161,20 @@
     <Content Include="Sprites\World\Push.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sprites\World\Tile\Blue.png" />
     <Content Include="Sprites\World\Tile\Filled.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sprites\World\Tile\Full.png" />
     <Content Include="Sprites\World\Tile\Locked.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Sprites\World\Tile\LockedWhite.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Sprites\World\Tile\Purple.png" />
+    <Content Include="Sprites\World\Tile\Red.png" />
+    <Content Include="Sprites\World\Tile\Void.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

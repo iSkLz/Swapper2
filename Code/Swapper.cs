@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 using SwapperV2.Scenes;
 using SwapperV2.World;
+using SwapperV2.Content;
 using SwapperV2.Graphics;
 using SwapperV2.Text;
 using SwapperV2.Inputs;
@@ -39,13 +40,17 @@ namespace SwapperV2
         {
             Instance = this;
             Graphics = new GraphicsDeviceManager(this);
+
+            new SpriteLoader("thaelah", (font) =>
+            {
+                MainFont = new Font(font);
+            });
         }
 
         protected override void LoadContent()
         {
             Batch = new SpriteBatch(GraphicsDevice);
-            SwapperV2.Content.Sprites.Load();
-            MainFont = new Font("thaelah");
+            Sprites.Load();
         }
 
         protected override void Initialize()

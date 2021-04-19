@@ -12,7 +12,7 @@ namespace SwapperV2.Graphics
         public int Width { get; }
         public int Height { get; }
 
-        public Image[] Sprites { get; }
+        public Image[] Images { get; }
 
         /// <summary>
         /// Creates a sprite sheet
@@ -26,11 +26,11 @@ namespace SwapperV2.Graphics
             Width = width;
             Height = height;
 
-            Sprites = new Image[sheet.Clip.Width / width];
+            Images = new Image[sheet.Clip.Width / width];
 
-            for (int i = 0; i < Sprites.Length; i++)
+            for (int i = 0; i < Images.Length; i++)
             {
-                Sprites[i] = Sheet.Cut(new Rectangle(i * Width, 0, Width, Height));
+                Images[i] = Sheet.Cut(new Rectangle(i * Width, 0, Width, Height));
             }
         }
 

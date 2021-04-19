@@ -7,26 +7,36 @@ namespace SwapperV2.World
 {
     public class Scene
     {
-        public List<Entity> Entities = new List<Entity>();
         public Color Background = Color.Black;
+
+        public List<Entity> Entities = new List<Entity>();
+        public List<Entity> ToRemove = new List<Entity>();
 
         public void Add(Entity entity)
         {
             entity.Scene = this;
             Entities.Add(entity);
+            entity.Added();
+        }
+
+        public void Remove(Entity entity)
+        {
+            ToRemove.Add(entity);
+            entity.Removed();
         }
 
         public virtual void Update(float delta)
         {
-            var toRemove = new List<Entity>();
+            ToRemove.Clear();
 
             foreach (var entity in Entities)
             {
-                if (entity.Update(delta)) toRemove.Add(entity);
+                entity.Update(delta);
             }
 
-            foreach (var entity in toRemove)
+            foreach (var entity in ToRemove)
             {
+                // TODO: Multiple removals check
                 Entities.Remove(entity);
             }
         }

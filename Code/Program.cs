@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SwapperV2
 {
-    class Program
+    public class Program
     {
         static void Main(string[] args)
         {
