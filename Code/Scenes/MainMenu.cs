@@ -18,10 +18,17 @@ namespace SwapperV2.Scenes
         public MainMenu()
         {
             Background = Palette.Void;
-            var tile = new Tile(Constants.TileColor.Blank, false, new Block());
-            tile.Position = new Vector2(Swapper.Instance.CenterX, Swapper.Instance.CenterY);
-            Add(tile);
-            Add(new Test3(tile));
+
+            Entity entity = new Entity()
+            {
+                Position = new Vector2(Swapper.Instance.CenterX, Swapper.Instance.CenterY)
+            };
+            var width = 2f;
+            entity.Add(new Line(Line.LineType.Horizontal, width, 100f, Color.Red));
+            entity.Add(new Line(Line.LineType.Horizontal, width, -100f, Color.Green));
+            entity.Add(new Line(Line.LineType.Vertical, width, 100f, Color.Blue));
+            entity.Add(new Line(Line.LineType.Vertical, width, -100f, Color.Purple));
+            Add(entity);
         }
     }
 }

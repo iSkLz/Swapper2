@@ -63,13 +63,15 @@ namespace SwapperV2.Graphics
         {
             if (Outline.HasValue && OutlineSize > 0f)
             {
+                var color = (Color)Outline;
                 // Iterate every corner (top left, top right, bottom left, bottom right)
                 for (int i = -1; i < 2; i+=2)
                 {
                     for (int k = -1; k < 2; k += 2)
                     {
+                        // TODO: Outline color? Is it even needed? Black should be enough
                         var offset = new Vector2(i * OutlineSize, k * OutlineSize);
-                        Swapper.Instance.Batch.Draw(Image.Texture, Parent.Position + Offset + Anchor * Scale + offset, Image.Clip, Tint, Rotation, Anchor, Scale, Flip, Z);
+                        Swapper.Instance.Batch.Draw(Image.Texture, Parent.Position + Offset + Anchor * Scale + offset, Image.Clip, color, Rotation, Anchor, Scale, Flip, Z);
                     }
                 }
             }

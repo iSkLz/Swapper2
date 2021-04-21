@@ -51,9 +51,11 @@
     <Compile Include="Gameplay\Blocks\Lock.cs" />
     <Compile Include="Gameplay\Blocks\Key.cs" />
     <Compile Include="Gameplay\EditTile.cs" />
+    <Compile Include="Gameplay\Grid.cs" />
     <Compile Include="Gameplay\Player.cs" />
     <Compile Include="Gameplay\Tile.cs" />
     <Compile Include="Graphics\Animation.cs" />
+    <Compile Include="Graphics\Line.cs" />
     <Compile Include="Graphics\Sprite.cs" />
     <Compile Include="Graphics\Image.cs" />
     <Compile Include="Graphics\SpriteSheet.cs" />
