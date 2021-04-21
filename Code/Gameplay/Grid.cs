@@ -70,14 +70,15 @@ namespace SwapperV2.Gameplay
         public Grid(Vector2 position, float cellWidth, float cellHeight, int columns, int rows, float lineSize, bool center = false)
         {
             Position = position;
-            HorizontalLines = new Line[columns + 1];
-            VerticalLines = new Line[rows + 1];
 
             CellWidth = cellWidth;
             CellHeight = cellHeight;
             Columns = columns;
             Rows = rows;
             LineSize = lineSize;
+
+            HorizontalLines = new Line[Rows + 1];
+            VerticalLines = new Line[Columns + 1];
 
             GridCellWidth = CellWidth + LineSize;
             GridCellHeight = CellHeight + LineSize;
