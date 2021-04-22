@@ -9,6 +9,9 @@ namespace SwapperV2.World
     {
         public Color Background = Color.Black;
 
+        public float GlobalZoom = 1f;
+        public Vector2 GlobalOffset = Vector2.Zero;
+
         public List<Entity> Entities = new List<Entity>();
         public List<Entity> ToRemove = new List<Entity>();
 

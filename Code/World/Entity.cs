@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 using Microsoft.Xna.Framework;
@@ -7,6 +8,7 @@ namespace SwapperV2.World
 {
     public class Entity
     {
+
         public Scene Scene;
         public Vector2 Position;
 
@@ -33,8 +35,6 @@ namespace SwapperV2.World
 
         public virtual void Update(float delta)
         {
-            ToRemove.Clear();
-
             foreach (var comp in Components)
             {
                 if (comp.Enabled) comp.Update(delta);
@@ -45,6 +45,8 @@ namespace SwapperV2.World
                 // TODO: Multiple removals check
                 Components.Remove(comp);
             }
+
+            ToRemove.Clear();
         }
 
         public virtual void Render()

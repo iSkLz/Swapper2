@@ -56,7 +56,7 @@ namespace SwapperV2.Graphics
         {
             Image = image;
             if (centerize)
-                Anchor = new Vector2(Image.Texture.Width / 2f, Image.Texture.Height / 2f);
+                Anchor = new Vector2(Image.Clip.Width / 2f, Image.Clip.Height / 2f);
         }
 
         public override void Render()
@@ -71,12 +71,20 @@ namespace SwapperV2.Graphics
                     {
                         // TODO: Outline color? Is it even needed? Black should be enough
                         var offset = new Vector2(i * OutlineSize, k * OutlineSize);
-                        Swapper.Instance.Batch.Draw(Image.Texture, Parent.Position + Offset + Anchor * Scale + offset, Image.Clip, color, Rotation, Anchor, Scale, Flip, Z);
+                        Swapper.Instance.Batch.Draw(Image.Texture,
+                            Parent.Position
+                            + (Offset + Anchor * Scale + offset) * Parent.Scene.GlobalZoom
+                            + Parent.Scene.GlobalOffset,
+                            Image.Clip, color, Rotation, Anchor, Scale * Parent.Scene.GlobalZoom, Flip, Z);
                     }
                 }
             }
 
-            Swapper.Instance.Batch.Draw(Image.Texture, Parent.Position + Offset + Anchor * Scale, Image.Clip, Tint, Rotation, Anchor, Scale, Flip, Z);
+            Swapper.Instance.Batch.Draw(Image.Texture,
+                Parent.Position
+                + (Parent.Scene.GlobalOffset
+                + Offset + Anchor * Scale) * Parent.Scene.GlobalZoom,
+                Image.Clip, Tint, Rotation, Anchor, Scale * Parent.Scene.GlobalZoom, Flip, Z);
         }
     }
 }

@@ -22,6 +22,24 @@ namespace SwapperV2.Gameplay
             });
         }
 
+        public static Tile[,] GenerateTiles(Grid grid, Scene scene)
+        {
+            var tiles = new Tile[grid.Columns, grid.Rows];
+
+            for (int x = 0; x < grid.Columns; x++)
+            {
+                for (int y = 0; y < grid.Rows; y++)
+                {
+                    scene.Add(tiles[x, y] = new Tile(Constants.TileColor.Blank, false, new Block())
+                    {
+                        Position = grid.GetPosition(x, y)
+                    });
+                }
+            }
+
+            return tiles;
+        }
+
         public Level Level => (Level)Scene;
 
         public Animation Sprite;
@@ -30,7 +48,21 @@ namespace SwapperV2.Gameplay
 
         public Constants.TileColor Type;
         public bool Locked;
-        public Block Block;
+
+        private Block block;
+        public Block Block
+        {
+            get
+            {
+                return block;
+            }
+            set
+            {
+                //if (value.GetType() == typeof(Blocks.Key)) System.Diagnostics.Debugger.Break();
+                block?.RemoveSelf();
+                Add(block = value);
+            }
+        }
 
         public bool Interactable => Type >= Constants.TileColor.Void;
         public bool Colored => Type <= Constants.TileColor.Blue;
@@ -40,7 +72,7 @@ namespace SwapperV2.Gameplay
             Lock = new Sprite(Sprites.Dict["world/tile/lockedwhite"]);
             Type = color;
             Locked = locked;
-            Add(Block = block);
+            Block = block;
             AddSprite();
         }
 
@@ -63,14 +95,15 @@ namespace SwapperV2.Gameplay
             return Block.MoveTo(tile);
         }
 
-        public void MovedFrom()
+        public void MovedFrom(Tile tile)
         {
-
+            Block.MovedFrom(tile);
         }
 
-        public void MovedTo()
+        public void MovedTo(Tile tile)
         {
             Locked = true;
+            Block.MovedTo(tile);
         }
 
         public void Paint(Constants.TileColor color)
@@ -98,6 +131,13 @@ namespace SwapperV2.Gameplay
             }
 
             base.Render();
+        }
+
+        public override void Update(float delta)
+        {
+            // TODO: Debug the STUPID key components accumulation
+            if (Components.Count > 2) System.Diagnostics.Debugger.Break();
+            base.Update(delta);
         }
     }
 }

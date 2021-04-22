@@ -12,6 +12,8 @@ namespace SwapperV2.Tests
 {
     public class Test3 : Entity
     {
+        static Random rrrr = new Random();
+
         // 2 true bits
         const byte keyTypeMask = (1 << 2) - 1;
 
@@ -30,20 +32,13 @@ namespace SwapperV2.Tests
 
         public IEnumerator Play(Tile entity)
         {
-            Random ay = new Random();
+            Random ay = new Random(rrrr.Next(99999));
 
             while (true)
             {
                 yield return 0.5f;
-                entity.Remove(entity.Block);
 
-                /*
-                int x1 = ay.Next(3), x2 = (ay.Next(4) << 2), x3 = (ay.Next(8) << 4);
-                byte blockNum = (byte)(x1 | x2 | x3);//*/
-
-                ///*
                 byte blockNum = (byte)(ay.Next(3) | (ay.Next(4) << 2) | (ay.Next(5) << 4));
-                //*/
 
                 var keyType = blockNum & keyTypeMask;
                 var shape = (blockNum & remoteShapeMask) >> remoteShapeShift;
@@ -65,7 +60,7 @@ namespace SwapperV2.Tests
                         keyType, shape, (int)Constants.RemoteType.None
                     };
 
-                entity.Add(entity.Block = tile.GetBlock());
+                entity.Block = tile.GetBlock();
             }
         }
     }
